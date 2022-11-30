@@ -11,11 +11,29 @@ public class ProcesoInscripciones {
         return null;
     }
 
-    public void procesarLinea(String linea){
+    private void procesarLinea(String linea) {
+        String[] datosEstudiante = linea.split(",");
+
+        if (datosEstudiante.length != 4) {
+            // ERROR_LOG
+            System.out.println("ERROR");
+        } else {
+            String cedula = datosEstudiante[0];
+
+            if (buscarEstudiante(cedula) == null) {
+                System.out.println("NO EXISTE");
+            } else {
+                String nombreEstudiante = datosEstudiante[2];
+                Estudiante estudiante = new Estudiante(cedula, nombreEstudiante);
+                estudiantes.put(cedula, estudiante);
+                estudiante.adicionarMateria(datosEstudiante[3]);
+            }
+
+        }
 
     }
 
-    public Estudiante buscarEstudiante(String cedula){
+    private Estudiante buscarEstudiante(String cedula) {
         return null;
     }
 }
